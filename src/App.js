@@ -1,12 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import { Button } from 'antd';
+import AdminLayout from './common/AdminLayout';
+import Login from './common/Login/Login';
 
 function App() {
   return (
-    <div className="App">
-      <Button type="primary">Button</Button>
-    </div>
+    <AdminLayout />
+    // <Login />
   );
 }
 
