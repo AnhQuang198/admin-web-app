@@ -1,11 +1,15 @@
-import React from 'react';
+import React from "react";
+import { Button, Result } from "antd";
 
 function ServerError() {
-    return (
-        <div>
-            500 Internal Server Error
-        </div>
-    );
+  return (
+    <Result
+      status="500"
+      title="500"
+      subTitle="Sorry, something went wrong."
+      extra={<Button type="primary">Back Home</Button>}
+    />
+  );
 }
 
 export default ServerError;

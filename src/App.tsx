@@ -1,10 +1,10 @@
 import React from 'react';
-import Icon from './components/Icon/Icon';
+import Authentication from './features/Authentication/Authentication';
 
 function App() {
   return (
     <div className="App">
-      <Icon name='logo-sm-light' type='png' />
+      <Authentication />
     </div>
   );
 }
