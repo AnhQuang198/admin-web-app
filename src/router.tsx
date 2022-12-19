@@ -1,9 +1,10 @@
 import {createBrowserRouter, redirect} from "react-router-dom";
 import App from "./App";
 import NotFound from "./components/common/NotFound/NotFound";
+import Home from "./features/Authentication/Home/Home";
 import Login from "./features/Login/Login";
 
-var isLogin = true;
+var isLogin = false;
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,12 @@ const router = createBrowserRouter([
         },
         element: <App />,
         errorElement: <NotFound />,
+        children: [
+            {
+                path: "/home",
+                element: <Home />
+            }
+        ]
     },
     {
         path: "/login",

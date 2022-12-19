@@ -1,14 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import './style.scss';
 
-Login.propTypes = {
-    
-};
-
-function Login(props: any) {
+function Login() {
     return (
-        <div>
-            Login screen
+        <div className='login-page'>
+            <div className='login-page-content'>
+                <div className='login-page-content-left'>
+
+                </div>
+                <div className='login-page-content-right'>
+                    <div className="login-page-content-right-title">
+
+                    </div>
+                    <div className="login-page-content-right-description">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

@@ -1,11 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-Home.propTypes = {
-    
-};
-
-function Home(props: any) {
+function Home() {
     return (
         <div>
             Home Dashboard
