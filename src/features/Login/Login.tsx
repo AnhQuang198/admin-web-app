@@ -1,24 +1,42 @@
-import React from 'react';
-import './style.scss';
+import React from "react";
+import "./style.scss";
 
 function Login() {
-    return (
-        <div className='login-page'>
-            <div className='login-page-content'>
-                <div className='login-page-content-left'>
-
-                </div>
-                <div className='login-page-content-right'>
-                    <div className="login-page-content-right-title">
-
-                    </div>
-                    <div className="login-page-content-right-description">
-                        
-                    </div>
-                </div>
-            </div>
+  return (
+    <div className="container-fluid login-page">
+      <div className="login-page-content">
+        <div className="login-page-content-left">
+          {/* <Icon name='authentication-bg' type='jpg'/> */}
         </div>
-    );
+        <div className="login-page-content-right">
+          <div className="content-right-header">
+            <div className="content-right-title">
+              <h2>Login to Website</h2>
+            </div>
+            <div className="content-right-description">
+              <span>
+                Welcome back! login with your data that you entered during
+                registration
+              </span>
+            </div>
+          </div>
+          <div className="content-right-login-social">
+            <button className="btn-login-social">Login with Google</button>
+            <button className="btn-login-social">Login with Facebook</button>
+          </div>
+          <div className="content-right-line">
+            <hr />
+            <span>or</span>
+            <hr />
+          </div>
+          <div className="content-right-login-form">
+            <input className="input-form" type="text"></input>
+            <input className="input-form" type="text"></input>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Login;

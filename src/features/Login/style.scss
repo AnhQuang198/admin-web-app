@@ -1,3 +1,89 @@
 .login-page {
-    background-color: aliceblue;
+    background-color: #f6f2f8;
+    height: 935px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+
+    &-content {
+        display: flex;
+        width: 60%;
+        height: 80%;
+        filter: drop-shadow(4px 4px 6px #d1d1d1);
+
+        &-left {
+            width: 100%;
+            background-color: #452b4e;
+            border-radius: 20px 0px 0px 20px;
+        }
+
+        &-right {
+            width: 100%;
+            padding: 55px 80px;
+            background-color: #ffffff;
+            border-radius: 0px 20px 20px 0px;
+
+            .content-right-header {
+                margin: 30px 0px;
+
+                .content-right-title {
+                    color: #3a3a3a;
+                }
+    
+                .content-right-description {
+                    margin-top: 20px;
+                    color: #979797;
+                }
+            }
+
+            .content-right-login-social {
+                display: flex;
+                flex-direction: column;
+
+                .btn-login-social {
+                    border: none;
+                    margin: 10px 0px;
+                    border-radius: 8px;
+                    height: 45px;
+                    font-weight: 600;
+                    color: #3a3a3a;
+                    background-color: #ffffff;
+                    filter: drop-shadow(1px 1px 4px #e0e0e0);
+                    transition: all 0.6s;
+
+                    &:hover {
+                        color: #ffffff;
+                        background-color: #ff805d;
+                    }
+                }
+            }
+
+            .content-right-line {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                margin: 20px 0px;
+
+                > span {
+                    font-size: 14px;
+                    margin: 0px 25px;
+                }
+
+                > hr {
+                    width: 50%;
+                    margin: 0px;
+                    border-top: 2px solid #c5c5c5;
+                }
+            }
+
+            .content-right-login-form {
+                display: flex;
+                flex-direction: column;
+            }
+            
+        }
+    }
 }

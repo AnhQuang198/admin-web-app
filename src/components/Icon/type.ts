@@ -1,6 +1,7 @@
 const iconList = [
     "logo-sm-light",
-    "error-img"
+    "error-img",
+    "authentication-bg"
 ] as const;
 
 export type IconTypeEnum = typeof iconList[number];
