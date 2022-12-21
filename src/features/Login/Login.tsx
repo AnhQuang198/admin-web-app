@@ -30,8 +30,12 @@ function Login() {
             <hr />
           </div>
           <div className="content-right-login-form">
-            <input className="input-form" type="text"></input>
-            <input className="input-form" type="text"></input>
+            <div className="login-input-text">
+              <input type="text" placeholder="Email" />
+            </div>
+            <div className="login-input-text">
+              <input type="password" placeholder="Password" />
+            </div>
           </div>
         </div>
       </div>
