@@ -1,4 +1,6 @@
+import { Checkbox } from "antd";
 import React from "react";
+import { Link } from "react-router-dom";
 import "./style.scss";
 
 function Login() {
@@ -36,6 +38,15 @@ function Login() {
             <div className="login-input-text">
               <input type="password" placeholder="Password" />
             </div>
+          </div>
+          <div className="content-right-remember-check">
+            <Checkbox>Remember me</Checkbox>
+            <Link to="/forgot-password">Forgot your password?</Link>
+          </div>
+          <button className="btn-login">Login</button>
+          <div className="content-right-register">
+            <span>Dont't have an account?</span>
+            <Link to="/register">Register</Link>
           </div>
         </div>
       </div>
