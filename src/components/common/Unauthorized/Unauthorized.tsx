@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Result } from "antd";
+import { Link } from "react-router-dom";
 
 function Unauthorized() {
   return (
@@ -7,7 +8,7 @@ function Unauthorized() {
       status="403"
       title="403"
       subTitle="Unauthorized."
-      extra={<Button type="primary">Back Home</Button>}
+      extra={<Button type="primary"><Link to="/">Back Home</Link></Button>}
     />
   );
 }

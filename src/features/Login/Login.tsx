@@ -33,7 +33,7 @@ function Login() {
           </div>
           <div className="content-right-login-form">
             <div className="login-input-text">
-              <input type="text" placeholder="Email" />
+              <input type="text" placeholder="Email address" />
             </div>
             <div className="login-input-text">
               <input type="password" placeholder="Password" />
