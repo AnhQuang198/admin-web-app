@@ -2,11 +2,14 @@ import {createBrowserRouter, redirect} from "react-router-dom";
 import App from "./App";
 import NotFound from "./components/common/NotFound/NotFound";
 import Home from "./features/Authentication/Home/Home";
+import ShopAddress from "./features/Authentication/Shop/ShopAddress/ShopAddress";
+import ShopProfile from "./features/Authentication/Shop/ShopProfile/ShopProfile";
+import ShopRating from "./features/Authentication/Shop/ShopRating/ShopRating";
 import ForgotPassword from "./features/Forgot/ForgotPassword";
 import Login from "./features/Login/Login";
 import Register from "./features/Register/Register";
 
-var isLogin = false;
+var isLogin = true;
 
 const router = createBrowserRouter([
     {
@@ -23,6 +26,18 @@ const router = createBrowserRouter([
             {
                 path: "/home",
                 element: <Home />
+            },
+            {
+                path: "/shop-rating",
+                element: <ShopRating />
+            },
+            {
+                path: "/shop-profile",
+                element: <ShopProfile />
+            },
+            {
+                path: "/shop-address",
+                element: <ShopAddress />
             }
         ]
     },

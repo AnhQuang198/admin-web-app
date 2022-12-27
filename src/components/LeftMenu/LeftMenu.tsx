@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import {
-  AppstoreOutlined,
-  MailOutlined,
   SettingOutlined,
+  HomeOutlined,
+  ShopOutlined,
+  RocketOutlined,
+  ShoppingCartOutlined,
+  InboxOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Menu, Layout } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 const { Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -27,33 +31,49 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("Navigation One", "sub1", <MailOutlined />, [
-    getItem("Option 1", "1"),
-    getItem("Option 2", "2"),
-    getItem("Option 3", "3"),
-    getItem("Option 4", "4"),
+  getItem("Trang chủ", "/home", <HomeOutlined />),
+  getItem("Quản Lý Shop", "/shop", <ShopOutlined />, [
+    getItem("Đánh Giá Shop", "/shop-rating"),
+    getItem("Hồ Sơ Shop", "/shop-profile"),
+    getItem("Địa Chỉ", "/shop-address"),
+    getItem("Tài Khoản", "4"),
+    getItem("Thiết Lập Shop", "5"),
   ]),
-  getItem("Navigation Two", "sub2", <AppstoreOutlined />, [
-    getItem("Option 5", "5"),
-    getItem("Option 6", "6"),
-    getItem("Submenu", "sub3", null, [
-      getItem("Option 7", "7"),
-      getItem("Option 8", "8"),
-    ]),
+  getItem("Vận chuyển", "delivery", <RocketOutlined />, [
+    getItem("Quản Lý Vận Chuyển", "6"),
+    getItem("Giao Hàng Loạt", "7"),
+    getItem("Cài Đặt Vận Chuyển", "8"),
   ]),
-  getItem("Navigation Three", "sub4", <SettingOutlined />, [
-    getItem("Option 9", "9"),
-    getItem("Option 10", "10"),
-    getItem("Option 11", "11"),
-    getItem("Option 12", "12"),
+  getItem("Quản Lý Đơn Hàng", "order", <ShoppingCartOutlined />, [
+    getItem("Tất cả", "9"),
+    getItem("Đơn Hủy", "10"),
+    getItem("Trả Hàng/Hoàn Tiền", "11"),
+  ]),
+  getItem("Quản Lý Sản Phẩm", "product", <InboxOutlined />, [
+    getItem("Tất Cả Sản Phẩm", "12"),
+    getItem("Thêm Sản Phẩm", "13"),
+    getItem("Sản Phẩm Vi Phạm", "14"),
+    getItem("Cài Đặt Sản Phẩm", "15"),
+  ]),
+  getItem("Trợ giúp", "support", <SettingOutlined />, [
+    getItem("Cổng Thông Tin Hỗ Trợ Người Bán", "16"),
   ]),
 ];
 
 // submenu keys of first level
-const rootSubmenuKeys = ["sub1", "sub2", "sub4"];
+const rootSubmenuKeys = [
+  "home",
+  "shop",
+  "shop-setting",
+  "delivery",
+  "order",
+  "product",
+  "support",
+];
 
 function LeftMenu() {
-  const [openKeys, setOpenKeys] = useState(["sub1"]);
+  const navigation = useNavigate();
+  const [openKeys, setOpenKeys] = useState(["shop"]);
 
   const onOpenChange: MenuProps["onOpenChange"] = (keys) => {
     const latestOpenKey = keys.find((key) => openKeys.indexOf(key) === -1);
@@ -64,21 +84,28 @@ function LeftMenu() {
     }
   };
 
+  const handleClick = ({ item, key }: any) => {
+    navigation(key);
+  };
+
   return (
-    <Sider>
+    <Sider width={240}>
       <div
         style={{
           height: 32,
           margin: 16,
           background: "rgba(255, 255, 255, 0.2)",
         }}
-      >Logo</div>
+      >
+        Logo
+      </div>
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={["/home"]}
         openKeys={openKeys}
         onOpenChange={onOpenChange}
+        onClick={handleClick}
         items={items}
       />
     </Sider>

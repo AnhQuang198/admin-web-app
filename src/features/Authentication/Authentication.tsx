@@ -12,8 +12,8 @@ function Authentication() {
       <LeftMenu />
       <Layout>
         <HeaderPage />
-        <Content style={{ margin: "24px 16px 0" }}>
-          <div style={{ padding: 24, minHeight: 360 }}>
+        <Content>
+          <div style={{ padding: 24, minHeight: 800 }}>
             <Outlet />
           </div>
         </Content>
