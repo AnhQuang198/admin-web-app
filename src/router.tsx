@@ -9,7 +9,7 @@ import ForgotPassword from "./features/Forgot/ForgotPassword";
 import Login from "./features/Login/Login";
 import Register from "./features/Register/Register";
 
-var isLogin = true;
+var isLogin = false;
 
 const router = createBrowserRouter([
     {
