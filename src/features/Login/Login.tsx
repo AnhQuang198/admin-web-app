@@ -1,24 +1,44 @@
 import { Checkbox } from "antd";
 import { Formik } from "formik";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authApi from "../../api/authApi";
+import { saveTokenAuth, setTimeExpire } from "../../utils/Common";
 import "./style.scss";
 
 function Login() {
+  const navigation = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const login = (email: string, password: string) => {
-		const handleLogin = async () => {
+  const login = async (email: string, password: string) => {
+    try {
       let data = {
         email: email,
-        password: password
-      }
-			await authApi.login(data);
-		};
-		handleLogin();
-	};
+        password: password,
+      };
+      console.log(data);
+      const response = await authApi.login(data);
+  
+      if (response.status === 200) {
+        const dataResponse = response.data;
+        saveTokenAuth(dataResponse.token, dataResponse.refreshToken);
+        setTimeExpire(dataResponse.expired);
+
+        // redirect to path when login success
+        navigation("/home");
+    } else {
+        // this.setState({
+        //     isError: true,
+        //     msgError: result.message,
+        //     isLoading: false
+        // })
+    }
+      console.log(response);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div className="container-fluid login-page">
@@ -52,24 +72,38 @@ function Login() {
             onSubmit={(values) => {
               setEmail(values.email);
               setPassword(values.password);
-              login(email, password);
+              login(values.email, values.password);
             }}
           >
             {({ values, errors, handleChange, handleSubmit }) => (
               <form onSubmit={handleSubmit}>
                 <div className="content-right-login-form">
                   <div className="login-input-text">
-                    <input type="text" name="email" onChange={handleChange} value={values.email} placeholder="Email address" />
+                    <input
+                      type="text"
+                      name="email"
+                      onChange={handleChange}
+                      value={values.email}
+                      placeholder="Email address"
+                    />
                   </div>
                   <div className="login-input-text">
-                    <input type="password" name="password" onChange={handleChange} value={values.password} placeholder="Password" />
+                    <input
+                      type="password"
+                      name="password"
+                      onChange={handleChange}
+                      value={values.password}
+                      placeholder="Password"
+                    />
                   </div>
                 </div>
                 <div className="content-right-remember-check">
                   <Checkbox>Remember me</Checkbox>
                   <Link to="/forgot-password">Forgot your password?</Link>
                 </div>
-                <button type="submit" className="btn-login">Login</button>
+                <button type="submit" className="btn-login">
+                  Login
+                </button>
               </form>
             )}
           </Formik>

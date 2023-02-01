@@ -8,14 +8,13 @@ import ShopRating from "./features/Authentication/Shop/ShopRating/ShopRating";
 import ForgotPassword from "./features/Forgot/ForgotPassword";
 import Login from "./features/Login/Login";
 import Register from "./features/Register/Register";
-
-var isLogin = false;
+import { isLogin } from "./utils/Common";
 
 const router = createBrowserRouter([
     {
         path: "/",
         loader: () => {
-            if (!isLogin) {
+            if (!isLogin()) {
                 return redirect("/login");
             }
             return isLogin;
@@ -44,7 +43,7 @@ const router = createBrowserRouter([
     {
         path: "/login",
         loader: () => {
-            if (isLogin) {
+            if (isLogin()) {
                 return redirect("/");
             }
             return isLogin;
@@ -55,7 +54,7 @@ const router = createBrowserRouter([
     {
         path: "/forgot-password",
         loader: () => {
-            if (isLogin) {
+            if (isLogin()) {
                 return redirect("/");
             }
             return isLogin;
@@ -66,7 +65,7 @@ const router = createBrowserRouter([
     {
         path: "/register",
         loader: () => {
-            if (isLogin) {
+            if (isLogin()) {
                 return redirect("/");
             }
             return isLogin;

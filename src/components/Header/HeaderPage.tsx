@@ -1,10 +1,18 @@
 import React from "react";
 import { BellOutlined } from "@ant-design/icons";
 import { Popover, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style.scss";
+import { isLogout } from "../../utils/Common";
 
 function HeaderPage() {
+  const navigation = useNavigate();
+
+  const logout = async () => {
+    isLogout();
+    navigation("/");
+  };
+
   return (
     <div className="header">
       <div className="header-content-left"></div>
@@ -19,9 +27,7 @@ function HeaderPage() {
               <div>
                 <span>Signed in as:</span>
                 <br />
-                <span>
-                  Quang Anh Lê
-                </span>
+                <span>Quang Anh Lê</span>
                 <hr />
               </div>
             }
@@ -30,13 +36,16 @@ function HeaderPage() {
                 <Button style={{ width: "100%", marginBottom: "10px" }}>
                   <Link to="/profile">Your profile</Link>
                 </Button>
-                <Button style={{ width: "100%", color: "red" }}>
+                <Button style={{ width: "100%", color: "red" }} onClick={logout}>
                   Sign out
                 </Button>
               </div>
             }
           >
-            <img alt="user" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXBE52Bv_pl8eBacx5vQThQj6qNZFtEqWImQ&usqp=CAU"/>
+            <img
+              alt="user"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXBE52Bv_pl8eBacx5vQThQj6qNZFtEqWImQ&usqp=CAU"
+            />
           </Popover>
         </div>
       </div>
