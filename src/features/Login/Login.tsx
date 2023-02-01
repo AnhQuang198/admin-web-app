@@ -2,11 +2,23 @@ import { Checkbox } from "antd";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import authApi from "../../api/authApi";
 import "./style.scss";
 
 function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const login = (email: string, password: string) => {
+		const handleLogin = async () => {
+      let data = {
+        email: email,
+        password: password
+      }
+			await authApi.login(data);
+		};
+		handleLogin();
+	};
 
   return (
     <div className="container-fluid login-page">
@@ -40,7 +52,7 @@ function Login() {
             onSubmit={(values) => {
               setEmail(values.email);
               setPassword(values.password);
-              console.log("Email:", email, password);
+              login(email, password);
             }}
           >
             {({ values, errors, handleChange, handleSubmit }) => (
