@@ -8,9 +8,9 @@ import { isLogout } from "../../utils/Common";
 function HeaderPage() {
   const navigation = useNavigate();
 
-  const logout = async () => {
+  const logout = () => {
     isLogout();
-    navigation("/");
+    navigation("/login");
   };
 
   return (
@@ -36,7 +36,10 @@ function HeaderPage() {
                 <Button style={{ width: "100%", marginBottom: "10px" }}>
                   <Link to="/profile">Your profile</Link>
                 </Button>
-                <Button style={{ width: "100%", color: "red" }} onClick={logout}>
+                <Button
+                  style={{ width: "100%", color: "red" }}
+                  onClick={logout}
+                >
                   Sign out
                 </Button>
               </div>

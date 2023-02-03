@@ -10,31 +10,29 @@ function Login() {
   const navigation = useNavigate();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const login = async (email: string, password: string) => {
     try {
+      setIsLoading(true);
       let data = {
         email: email,
         password: password,
       };
-      console.log(data);
       const response = await authApi.login(data);
-  
+
       if (response.status === 200) {
         const dataResponse = response.data;
         saveTokenAuth(dataResponse.token, dataResponse.refreshToken);
         setTimeExpire(dataResponse.expired);
-
+        setIsLoading(false);
         // redirect to path when login success
         navigation("/home");
-    } else {
-        // this.setState({
-        //     isError: true,
-        //     msgError: result.message,
-        //     isLoading: false
-        // })
-    }
-      console.log(response);
+      } else {
+        setIsLoading(false);
+        setIsError(true);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -101,8 +99,8 @@ function Login() {
                   <Checkbox>Remember me</Checkbox>
                   <Link to="/forgot-password">Forgot your password?</Link>
                 </div>
-                <button type="submit" className="btn-login">
-                  Login
+                <button type="submit" className="btn-login" disabled={isLoading}>
+                  {isLoading ? 'Loading...' : 'Login'}
                 </button>
               </form>
             )}

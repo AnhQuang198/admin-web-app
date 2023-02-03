@@ -1,5 +1,5 @@
-import React from 'react';
-import Authentication from './features/Authentication/Authentication';
+import React from "react";
+import Authentication from "./features/Authentication/Authentication";
 
 function App() {
   return (
