@@ -11,7 +11,7 @@ function Loading(props:any) {
     if (isLoading) {
       setProgress(70);
     }
-    return progress + 70;
+    return progress + 100;
   }
 
   const onLoaderFinished = () => {
@@ -20,7 +20,7 @@ function Loading(props:any) {
 
   return (
     <div>
-      <LoadingBar color="red" progress={loadingProgress()} height={3} onLoaderFinished={onLoaderFinished} />
+      <LoadingBar color="#1677ff" progress={loadingProgress()} height={3} onLoaderFinished={onLoaderFinished} />
       {props.children}
     </div>
   );
