@@ -53,7 +53,7 @@ const router = createBrowserRouter([
       }
       return isLogin;
     },
-    element: <Login />,
+    element: <Loading><Login /></Loading>,
     errorElement: <NotFound />,
   },
   {

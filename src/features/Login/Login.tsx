@@ -1,8 +1,10 @@
 import { Checkbox } from "antd";
 import { Formik } from "formik";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { nonAuthPOST } from "../../api/apiRequest";
 import authApi from "../../api/authApi";
+import { useCallApi } from "../../api/useCallApi";
 import { saveTokenAuth, setTimeExpire } from "../../utils/Common";
 import "./style.scss";
 
@@ -12,6 +14,9 @@ function Login() {
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const [isSubmit, setIsSubmit] = useState<boolean>(false);
+
+  const callApi = useCallApi();
 
   const login = async (email: string, password: string) => {
     try {
@@ -20,7 +25,10 @@ function Login() {
         email: email,
         password: password,
       };
-      const response = await authApi.login(data);
+      // const response = await authApi.login(data);
+      const response = await callApi(() => nonAuthPOST("/v1/auth/login", { email: email, password: password }) );
+
+      console.log('res',response)
 
       if (response.status === 200) {
         const dataResponse = response.data;
@@ -37,6 +45,8 @@ function Login() {
       console.log(e);
     }
   };
+
+
 
   return (
     <div className="container-fluid login-page">
@@ -70,7 +80,8 @@ function Login() {
             onSubmit={(values) => {
               setEmail(values.email);
               setPassword(values.password);
-              login(values.email, values.password);
+              // setIsSubmit(true);
+             login(values.email, values.password)
             }}
           >
             {({ values, errors, handleChange, handleSubmit }) => (
@@ -99,8 +110,12 @@ function Login() {
                   <Checkbox>Remember me</Checkbox>
                   <Link to="/forgot-password">Forgot your password?</Link>
                 </div>
-                <button type="submit" className="btn-login" disabled={isLoading}>
-                  {isLoading ? 'Loading...' : 'Login'}
+                <button
+                  type="submit"
+                  className="btn-login"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Loading..." : "Login"}
                 </button>
               </form>
             )}

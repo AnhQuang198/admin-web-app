@@ -1,12 +1,28 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../app/store";
+import axiosClient from "./axiosClient";
 
-const isLoading = useSelector((state: RootState) => state.loading.isLoading);
+export const nonAuthGET = (url: string) => {
+    return axiosClient({
+        method: "GET",
+        url: url,
+    }).then(response => {
+        return response;
+    });
+}
 
-export const nonAuthGet = async (url: string) => {
+export const authGET = (url: string) => {
 
 }
 
-export const nonAuthPost = async (url: string, data: any) => {
+export const nonAuthPOST = (url: string, params: any) => {
+    return axiosClient({
+        method: "POST",
+        url: url,
+        data: params,
+    }).then(response => {
+        return response;
+    });
+}
 
+export const authPOST = (url: string, data: any) => {
+    
 }
