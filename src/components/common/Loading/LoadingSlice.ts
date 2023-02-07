@@ -9,11 +9,9 @@ const loadingSlice = createSlice({
   initialState: initialState,
   reducers: {
     enableLoading: (state) => {
-      console.log("enableLoading");
       state.isLoading = 70;
     },
     disableLoading: (state) => {
-      console.log("disable");
       state.isLoading = 100;
     },
   },

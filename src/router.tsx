@@ -53,7 +53,11 @@ const router = createBrowserRouter([
       }
       return isLogin;
     },
-    element: <Loading><Login /></Loading>,
+    element: (
+      <Loading>
+        <Login />
+      </Loading>
+    ),
     errorElement: <NotFound />,
   },
   {
@@ -64,7 +68,11 @@ const router = createBrowserRouter([
       }
       return isLogin;
     },
-    element: <ForgotPassword />,
+    element: (
+      <Loading>
+        <ForgotPassword />
+      </Loading>
+    ),
     errorElement: <NotFound />,
   },
   {
@@ -75,7 +83,11 @@ const router = createBrowserRouter([
       }
       return isLogin;
     },
-    element: <Register />,
+    element: (
+      <Loading>
+        <Register />
+      </Loading>
+    ),
     errorElement: <NotFound />,
   },
 ]);

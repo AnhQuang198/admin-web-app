@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import {
   disableLoading,
   enableLoading,
-} from "../components/common/Loading/LoadingSlice";
+} from "../../components/common/Loading/LoadingSlice";
 
 export const useCallApi = () => {
   const dispatch = useDispatch();
@@ -19,5 +19,5 @@ export const useCallApi = () => {
     }
   };
 
-  return (callback:any) => handleCallApi(callback);
+  return (callback: Function) => handleCallApi(callback);
 };

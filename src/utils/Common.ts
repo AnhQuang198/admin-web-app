@@ -20,6 +20,7 @@ export const GITHUB_AUTH_URL =
 const TOKEN_KEY = "access_token";
 const REFRESH_TOKEN_KEY = "refresh_token";
 const USER_EXPIRE_TIME = "user_expire_time";
+const TOKEN_TYPE = "token_type";
 
 export const saveTokenAuth = (token: string, refreshToken: string) => {
   localStorage.setItem(TOKEN_KEY, token);
@@ -29,6 +30,8 @@ export const saveTokenAuth = (token: string, refreshToken: string) => {
 export const isLogout = () => {
   localStorage.removeItem(TOKEN_KEY);
   localStorage.removeItem(REFRESH_TOKEN_KEY);
+  localStorage.removeItem(TOKEN_TYPE);
+  localStorage.removeItem(USER_EXPIRE_TIME);
 }
 
 export const isLogin = () => {
@@ -38,6 +41,22 @@ export const isLogin = () => {
   return false;
 };
 
+export const setTokenType = (tokenType: string) => {
+  localStorage.setItem(TOKEN_TYPE, tokenType);
+}
+
 export const setTimeExpire = (time: any) => {
   localStorage.setItem(USER_EXPIRE_TIME, time);
+}
+
+export const getTokenType = () => {
+  return localStorage.getItem(TOKEN_TYPE);
+}
+
+export const getAccessToken = () => {
+  return localStorage.getItem(TOKEN_KEY);
+}
+
+export const getRefreshToken = () => {
+  return localStorage.getItem(REFRESH_TOKEN_KEY);
 }

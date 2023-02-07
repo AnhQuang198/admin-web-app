@@ -8,11 +8,12 @@ const axiosClient = axios.create({
   data: (params: any) => JSON.stringify(params),
 });
 
-// axiosClient.interceptors.response.use((response: any) => {
-//   if (response && response.data) {
-//     return response.data;
-//   }
-//   return response;
-// });
+axiosClient.interceptors.response.use((response: any) => {
+  console.log("1111111 ", response);
+  if (response.status !== 200) {
+    return response.data;
+  }
+  return response;
+});
 
 export default axiosClient;

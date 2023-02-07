@@ -1,22 +1,20 @@
 import { Checkbox } from "antd";
 import { Formik } from "formik";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { nonAuthPOST } from "../../api/apiRequest";
-import authApi from "../../api/authApi";
-import { useCallApi } from "../../api/useCallApi";
-import { saveTokenAuth, setTimeExpire } from "../../utils/Common";
+import { useCallApi } from "../../utils/hooks/useCallApi";
+import { saveTokenAuth, setTimeExpire, setTokenType } from "../../utils/Common";
 import "./style.scss";
+import authApi from "../../api/authApi";
+import { useGetNotification } from "../../utils/hooks/useGetNotification";
 
 function Login() {
   const navigation = useNavigate();
+  const callApi = useCallApi();
+  const getNotification = useGetNotification();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [isSubmit, setIsSubmit] = useState<boolean>(false);
-
-  const callApi = useCallApi();
 
   const login = async (email: string, password: string) => {
     try {
@@ -25,28 +23,30 @@ function Login() {
         email: email,
         password: password,
       };
-      // const response = await authApi.login(data);
-      const response = await callApi(() => nonAuthPOST("/v1/auth/login", { email: email, password: password }) );
-
-      console.log('res',response)
+      const response = await callApi(() => authApi.login(data));
+      console.log(response);
 
       if (response.status === 200) {
         const dataResponse = response.data;
         saveTokenAuth(dataResponse.token, dataResponse.refreshToken);
         setTimeExpire(dataResponse.expired);
+        setTokenType(dataResponse.tokenType);
         setIsLoading(false);
         // redirect to path when login success
         navigation("/home");
       } else {
         setIsLoading(false);
-        setIsError(true);
+        let errorObj = {
+          type: 'error',
+          title: 'Đăng nhập thất bại!',
+          content: 'Tài khoản hoặc mật khẩu không chính xác',
+        }
+        getNotification(errorObj);
       }
     } catch (e) {
       console.log(e);
     }
   };
-
-
 
   return (
     <div className="container-fluid login-page">
@@ -80,8 +80,7 @@ function Login() {
             onSubmit={(values) => {
               setEmail(values.email);
               setPassword(values.password);
-              // setIsSubmit(true);
-             login(values.email, values.password)
+              login(values.email, values.password);
             }}
           >
             {({ values, errors, handleChange, handleSubmit }) => (

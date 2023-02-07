@@ -1,28 +1,41 @@
+import { getAccessToken, getTokenType } from "../utils/Common";
 import axiosClient from "./axiosClient";
 
-export const nonAuthGET = (url: string) => {
+const tokenType = getTokenType();
+let accessToken = getAccessToken();
+
+export const unAuthGET = (url: string) => {
     return axiosClient({
         method: "GET",
         url: url,
-    }).then(response => {
-        return response;
     });
 }
 
 export const authGET = (url: string) => {
-
+    return axiosClient({
+        method: "GET",
+        url: url,
+        headers: {
+            tokenType : accessToken,
+        }
+    });
 }
 
-export const nonAuthPOST = (url: string, params: any) => {
+export const unAuthPOST = (url: string, params: object) => {
     return axiosClient({
         method: "POST",
         url: url,
         data: params,
-    }).then(response => {
-        return response;
     });
 }
 
-export const authPOST = (url: string, data: any) => {
-    
+export const authPOST = (url: string, params: object) => {
+    return axiosClient({
+        method: "POST",
+        url: url,
+        headers: {
+            tokenType : accessToken,
+        },
+        data: params,
+    });
 }

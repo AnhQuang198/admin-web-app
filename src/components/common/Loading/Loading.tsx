@@ -1,12 +1,9 @@
-import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import LoadingBar from "react-top-loading-bar";
 import { RootState } from "../../../app/store";
 
 function Loading(props:any) {
   const isLoading = useSelector((state: RootState) => state.loading.isLoading);
-  // const [progress, setProgress] = useState<number>(0);
-
 
   const onLoaderFinished = () => {
     if(isLoading === 100){
