@@ -6,12 +6,17 @@ import { useCallApi } from "../../utils/hooks/useCallApi";
 import { saveTokenAuth, setTimeExpire, setTokenType } from "../../utils/Common";
 import "./style.scss";
 import authApi from "../../api/authApi";
-import { useGetNotification } from "../../utils/hooks/useGetNotification";
+import {
+  NotiObject,
+  useGetNotification,
+} from "../../utils/hooks/useGetNotification";
+import { useTranslation } from "react-i18next";
 
 function Login() {
+  const {t} = useTranslation();
   const navigation = useNavigate();
   const callApi = useCallApi();
-  const getNotification = useGetNotification();
+  const { openNotification, contextHolder } = useGetNotification();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -36,12 +41,12 @@ function Login() {
         navigation("/home");
       } else {
         setIsLoading(false);
-        let errorObj = {
-          type: 'error',
-          title: 'Đăng nhập thất bại!',
-          content: 'Tài khoản hoặc mật khẩu không chính xác',
-        }
-        getNotification(errorObj);
+        let errorObj: NotiObject = {
+          type: "error",
+          title: "Đăng nhập thất bại!",
+          content: "Tài khoản hoặc mật khẩu không chính xác",
+        };
+        openNotification(errorObj);
       }
     } catch (e) {
       console.log(e);
@@ -50,6 +55,7 @@ function Login() {
 
   return (
     <div className="container-fluid login-page">
+      {contextHolder}
       <div className="login-page-content">
         <div className="login-page-content-left">
           {/* <Icon name='authentication-bg' type='jpg'/> */}
@@ -121,7 +127,8 @@ function Login() {
           </Formik>
           <div className="content-right-register">
             <span>Dont't have an account?</span>
-            <Link to="/register">Register</Link>
+            {/* <Link to="/register">Register</Link> */}
+            <Link to="/register">{t("common.button.save")}</Link>
           </div>
         </div>
       </div>

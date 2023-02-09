@@ -1,0 +1,53 @@
+{
+    "common": {
+        "menu": {
+            "home": "Home",
+            "dashboard" : "Dashboard"
+        },
+        "button": {
+            "langEn": "English",
+            "langVi": "Vietnamese",
+            "save": "Save",
+            "edit": "Edit",
+            "update": "Update",
+            "cancel": "Cancel",
+            "close": "Close",
+            "delete": "Delete",
+            "agree": "Agree",
+            "back": "Back",
+            "clear": "Clear",
+            "upload": "Upload",
+            "chooseFile": "Choose file",
+            "yes": "Yes",
+            "no": "No"
+        },
+        "message": {
+            "error": {
+                "add": "Add new comment failed",
+                "edit": "Update failed",
+                "delete": "Delete failed",
+                "upload": "Upload file fail"
+            },
+            "success": {
+                "add": "Add new comment successfully",
+                "edit": "Update successfully",
+                "delete": "Delete successfully",
+                "upload": "Upload file successfully"
+            }
+        },
+        "page": {
+            "401": {
+                "title": "YOU DO NOT HAVE RIGHTS TO THE GNOC SYSTEM",
+                "message": "OTHER SUPPORTING:"
+            },
+            "404": {
+                "title": "Oops! You're lost.",
+                "message": "The page you are looking for was not found."
+            },
+            "500": {
+                "title": "Houston, we have a problem!",
+                "message": "The page you are looking for is temporarily unavailable."
+            }
+        }
+    }
+}

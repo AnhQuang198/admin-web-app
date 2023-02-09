@@ -1,0 +1,52 @@
+{
+    "common": {
+        "menu": {
+            "home": "Trang chủ",
+            "dashboard" : "Dashboard"
+        },
+        "button": {
+            "langEn": "Tiếng Anh",
+            "langVi": "Tiếng Việt",
+            "save": "Lưu",
+            "edit": "Sửa",
+            "update": "Cập nhật",
+            "cancel": "Hủy bỏ",
+            "close": "Đóng",
+            "delete": "Xóa",
+            "agree": "Đồng ý",
+            "back": "Quay lại",
+            "upload": "Tải lên",
+            "chooseFile": "Chọn file",
+            "yes": "Có",
+            "no": "Không"
+        },
+        "message": {
+            "error": {
+                "add": "Thêm mới không thành công",
+                "edit": "Cập nhật không thành công",
+                "delete": "Xóa không thành công",
+                "upload": "Upload file thất bại"
+            },
+            "success": {
+                "add": "Thêm mới thành công",
+                "edit": "Cập nhật thành công",
+                "delete": "Xóa thành công",
+                "upload": "Upload file thành công"
+            }
+        },
+        "page": {
+            "401": {
+                "title": "YOU DO NOT HAVE RIGHTS TO THE GNOC SYSTEM",
+                "message": "OTHER SUPPORTING:"
+            },
+            "404": {
+                "title": "Oops! You're lost.",
+                "message": "The page you are looking for was not found."
+            },
+            "500": {
+                "title": "Houston, we have a problem!",
+                "message": "The page you are looking for is temporarily unavailable."
+            }
+        }
+    }
+}

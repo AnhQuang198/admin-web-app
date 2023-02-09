@@ -9,19 +9,14 @@ export interface NotiObject {
 }
 
 export const useGetNotification = () => {
-  const [notify, setNotify] = notification.useNotification();
+  const [api, contextHolder] = notification.useNotification();
 
-  const openNotification = (
-    type: NotificationType,
-    title: string,
-    content: string
-  ) => {
-    notify[type]({
-      message: title,
-      description: content,
+  const openNotification = (params: NotiObject) => {
+    api[params.type]({
+      message: params.title,
+      description: params.content,
     });
   };
 
-  return (params: any) =>
-    openNotification('error', params.title, params.content);
+  return { openNotification, contextHolder };
 };
