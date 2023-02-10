@@ -41,10 +41,11 @@ function Login() {
         navigation("/home");
       } else {
         setIsLoading(false);
+        const dataError = response.response.data;
         let errorObj: NotiObject = {
           type: "error",
           title: "Đăng nhập thất bại!",
-          content: "Tài khoản hoặc mật khẩu không chính xác",
+          content: dataError.message,
         };
         openNotification(errorObj);
       }
@@ -63,22 +64,19 @@ function Login() {
         <div className="login-page-content-right">
           <div className="content-right-header">
             <div className="content-right-title">
-              <h2>Login to Website</h2>
+              <h2>{t("auth:login.header")}</h2>
             </div>
             <div className="content-right-description">
-              <span>
-                Welcome back! login with your data that you entered during
-                registration
-              </span>
+              <span>{t("auth:login.subHeader")}</span>
             </div>
           </div>
           <div className="content-right-login-social">
-            <button className="btn-login-social">Login with Google</button>
-            <button className="btn-login-social">Login with Facebook</button>
+            <button className="btn-login-social">{t("auth:login.button.googleLogin")}</button>
+            <button className="btn-login-social">{t("auth:login.button.facebookLogin")}</button>
           </div>
           <div className="content-right-line">
             <hr />
-            <span>or</span>
+            <span>{t("auth:login.label.or")}</span>
             <hr />
           </div>
           <Formik
@@ -112,23 +110,22 @@ function Login() {
                   </div>
                 </div>
                 <div className="content-right-remember-check">
-                  <Checkbox>Remember me</Checkbox>
-                  <Link to="/forgot-password">Forgot your password?</Link>
+                  <Checkbox>{t("auth:login.label.rememberMe")}</Checkbox>
+                  <Link to="/forgot-password">{t("auth:login.label.forgotPassword")}</Link>
                 </div>
                 <button
                   type="submit"
                   className="btn-login"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Loading..." : "Login"}
+                  {isLoading ? t("auth:login.button.loading") : t("auth:login.button.login")}
                 </button>
               </form>
             )}
           </Formik>
           <div className="content-right-register">
-            <span>Dont't have an account?</span>
-            {/* <Link to="/register">Register</Link> */}
-            <Link to="/register">{t("common.button.save")}</Link>
+            <span>{t("auth:login.label.registerLabel")}</span>
+            <Link to="/register">{t("auth:login.label.register")}</Link>
           </div>
         </div>
       </div>

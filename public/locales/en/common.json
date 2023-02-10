@@ -4,6 +4,9 @@
             "home": "Home",
             "dashboard" : "Dashboard"
         },
+        "label": {
+            "loading": "Loading..."
+        },
         "button": {
             "langEn": "English",
             "langVi": "Vietnamese",

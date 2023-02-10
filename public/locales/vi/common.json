@@ -4,6 +4,9 @@
             "home": "Trang chủ",
             "dashboard" : "Dashboard"
         },
+        "label": {
+            "loading": "Loading..."
+        },
         "button": {
             "langEn": "Tiếng Anh",
             "langVi": "Tiếng Việt",

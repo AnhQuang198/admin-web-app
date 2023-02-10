@@ -21,6 +21,7 @@ const TOKEN_KEY = "access_token";
 const REFRESH_TOKEN_KEY = "refresh_token";
 const USER_EXPIRE_TIME = "user_expire_time";
 const TOKEN_TYPE = "token_type";
+const DEFAULT_LOCALE = "default_locale";
 
 export const saveTokenAuth = (token: string, refreshToken: string) => {
   localStorage.setItem(TOKEN_KEY, token);
@@ -59,4 +60,8 @@ export const getAccessToken = () => {
 
 export const getRefreshToken = () => {
   return localStorage.getItem(REFRESH_TOKEN_KEY);
+}
+
+export const getDefaultLocale = () => {
+  return localStorage.getItem(DEFAULT_LOCALE) ? localStorage.getItem(DEFAULT_LOCALE) : "en";
 }

@@ -18,7 +18,8 @@ i18next
             debug: false,
             // have a common namespace used around the full app
             ns: [
-                "common"
+                "common",
+                "auth"
             ],
             defaultNS: "common",
             interpolation: {
