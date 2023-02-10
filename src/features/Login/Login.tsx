@@ -11,9 +11,10 @@ import {
   useGetNotification,
 } from "../../utils/hooks/useGetNotification";
 import { useTranslation } from "react-i18next";
+import { LoginSchema } from "./LoginSchema";
 
 function Login() {
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const navigation = useNavigate();
   const callApi = useCallApi();
   const { openNotification, contextHolder } = useGetNotification();
@@ -71,8 +72,12 @@ function Login() {
             </div>
           </div>
           <div className="content-right-login-social">
-            <button className="btn-login-social">{t("auth:login.button.googleLogin")}</button>
-            <button className="btn-login-social">{t("auth:login.button.facebookLogin")}</button>
+            <button className="btn-login-social">
+              {t("auth:login.button.googleLogin")}
+            </button>
+            <button className="btn-login-social">
+              {t("auth:login.button.facebookLogin")}
+            </button>
           </div>
           <div className="content-right-line">
             <hr />
@@ -81,6 +86,7 @@ function Login() {
           </div>
           <Formik
             initialValues={{ email: email, password: password }}
+            validationSchema={LoginSchema}
             onSubmit={(values) => {
               setEmail(values.email);
               setPassword(values.password);
@@ -90,36 +96,60 @@ function Login() {
             {({ values, errors, handleChange, handleSubmit }) => (
               <form onSubmit={handleSubmit}>
                 <div className="content-right-login-form">
-                  <div className="login-input-text">
-                    <input
-                      type="text"
-                      name="email"
-                      onChange={handleChange}
-                      value={values.email}
-                      placeholder="Email address"
-                    />
+                  <div className="input-validate">
+                    <div className="login-input-text">
+                      <input
+                        type="text"
+                        name="email"
+                        onChange={handleChange}
+                        value={values.email}
+                        placeholder="Email address"
+                      />
+                    </div>
+                    <div className="validate-error">
+                      {errors.email && (
+                        <span className="validate-error-message">
+                          {errors.email}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  <div className="login-input-text">
-                    <input
-                      type="password"
-                      name="password"
-                      onChange={handleChange}
-                      value={values.password}
-                      placeholder="Password"
-                    />
+                  <div className="input-validate">
+                    <div className="login-input-text">
+                      <input
+                        type="password"
+                        name="password"
+                        onChange={handleChange}
+                        value={values.password}
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div className="validate-error">
+                      {errors.password && (
+                        <span className="validate-error-message">
+                          {errors.password}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
-                <div className="content-right-remember-check">
-                  <Checkbox>{t("auth:login.label.rememberMe")}</Checkbox>
-                  <Link to="/forgot-password">{t("auth:login.label.forgotPassword")}</Link>
+                <div className="content-right-login-submit">
+                  <div className="content-right-remember-check">
+                    <Checkbox>{t("auth:login.label.rememberMe")}</Checkbox>
+                    <Link to="/forgot-password">
+                      {t("auth:login.label.forgotPassword")}
+                    </Link>
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn-login"
+                    disabled={isLoading}
+                  >
+                    {isLoading
+                      ? t("auth:login.button.loading")
+                      : t("auth:login.button.login")}
+                  </button>
                 </div>
-                <button
-                  type="submit"
-                  className="btn-login"
-                  disabled={isLoading}
-                >
-                  {isLoading ? t("auth:login.button.loading") : t("auth:login.button.login")}
-                </button>
               </form>
             )}
           </Formik>
