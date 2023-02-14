@@ -13,6 +13,11 @@ import {
 import { useTranslation } from "react-i18next";
 import { LoginSchema } from "./LoginSchema";
 
+export interface LoginData {
+  email: string;
+  password: string;
+}
+
 function Login() {
   const { t } = useTranslation();
   const navigation = useNavigate();
@@ -22,12 +27,12 @@ function Login() {
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const login = async (email: string, password: string) => {
+  const login = async (params: LoginData) => {
     try {
       setIsLoading(true);
       let data = {
-        email: email,
-        password: password,
+        email: params.email,
+        password: params.password,
       };
       const response = await callApi(() => authApi.login(data));
       console.log(response);
@@ -90,10 +95,10 @@ function Login() {
             onSubmit={(values) => {
               setEmail(values.email);
               setPassword(values.password);
-              login(values.email, values.password);
+              login(values);
             }}
           >
-            {({ values, errors, handleChange, handleSubmit }) => (
+            {({ values, errors, touched, handleChange, handleSubmit }) => (
               <form onSubmit={handleSubmit}>
                 <div className="content-right-login-form">
                   <div className="input-validate">
@@ -107,7 +112,7 @@ function Login() {
                       />
                     </div>
                     <div className="validate-error">
-                      {errors.email && (
+                      {errors.email && touched.email && (
                         <span className="validate-error-message">
                           {errors.email}
                         </span>
@@ -125,7 +130,7 @@ function Login() {
                       />
                     </div>
                     <div className="validate-error">
-                      {errors.password && (
+                      {errors.password && touched.password && (
                         <span className="validate-error-message">
                           {errors.password}
                         </span>

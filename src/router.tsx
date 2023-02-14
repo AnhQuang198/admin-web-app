@@ -8,6 +8,7 @@ import ShopProfile from "./features/Authentication/Shop/ShopProfile/ShopProfile"
 import ShopRating from "./features/Authentication/Shop/ShopRating/ShopRating";
 import ForgotPassword from "./features/Forgot/ForgotPassword";
 import Login from "./features/Login/Login";
+import OtpVerify from "./features/OtpVerify/OtpVerify";
 import Register from "./features/Register/Register";
 import { isLogin } from "./utils/Common";
 
@@ -86,6 +87,21 @@ const router = createBrowserRouter([
     element: (
       <Loading>
         <Register />
+      </Loading>
+    ),
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/otp-verify",
+    loader: () => {
+      if (isLogin()) {
+        return redirect("/");
+      }
+      return isLogin;
+    },
+    element: (
+      <Loading>
+        <OtpVerify />
       </Loading>
     ),
     errorElement: <NotFound />,

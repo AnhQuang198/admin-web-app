@@ -1,13 +1,15 @@
+import { LoginData } from './../features/Login/Login';
+import { RegisterData } from './../features/Register/Register';
 import { unAuthPOST } from "./apiRequest";
 
 const apiPrefix = "/v1/auth";
 
 const authApi = {
-  login: (params: object) => {
+  login: (params: LoginData) => {
     let url = apiPrefix + "/login";
     return unAuthPOST(url, params);
   },
-  register: (params: object) => {
+  register: (params: RegisterData) => {
     let url = apiPrefix + "/register";
     return unAuthPOST(url, params);
   },

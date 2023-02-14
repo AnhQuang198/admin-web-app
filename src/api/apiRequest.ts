@@ -1,7 +1,6 @@
-import { getAccessToken, getTokenType } from "../utils/Common";
+import { getAccessToken } from "../utils/Common";
 import axiosClient from "./axiosClient";
 
-const tokenType = getTokenType();
 let accessToken = getAccessToken();
 
 export const unAuthGET = (url: string) => {
@@ -16,7 +15,7 @@ export const authGET = (url: string) => {
         method: "GET",
         url: url,
         headers: {
-            tokenType : accessToken,
+            "x-auth-token" : accessToken,
         }
     });
 }
@@ -34,7 +33,7 @@ export const authPOST = (url: string, params: object) => {
         method: "POST",
         url: url,
         headers: {
-            tokenType : accessToken,
+            "x-auth-token" : accessToken,
         },
         data: params,
     });

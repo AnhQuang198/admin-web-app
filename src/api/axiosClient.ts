@@ -9,8 +9,7 @@ const axiosClient = axios.create({
 });
 
 axiosClient.interceptors.response.use((response: any) => {
-  console.log("1111111 ", response);
-  if (response.status !== 200) {
+  if (response.status !== 200 && response.status !== 201) {
     return response.data;
   }
   return response;

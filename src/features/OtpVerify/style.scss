@@ -1,4 +1,4 @@
-.register-page {
+.verify-otp-page {
     background-color: #f6f2f8;
     height: 965px;
     display: flex;
@@ -27,6 +27,7 @@
             background-color: #ffffff;
             border-radius: 0px 20px 20px 0px;
 
+            
             .content-right-header {
                 margin: 30px 0px;
 
@@ -35,12 +36,12 @@
                 }
     
                 .content-right-description {
-                    margin-top: 20px;
+                    margin-top: 15px;
                     color: #979797;
                 }
             }
 
-            .content-right-register-form {
+            .content-right-verify-otp-form {
                 display: flex;
                 flex-direction: column;
 
@@ -61,7 +62,7 @@
                     }
                 }
 
-                .register-input-text {
+                .verify-otp-input-text {
                     display: flex;
                     align-items: center;
                     height: 50px;
@@ -83,7 +84,7 @@
                 }
             }
 
-            .btn-register {
+            .btn-verify-otp {
                 border: none;
                 margin-top: 20px;
                 border-radius: 8px;
@@ -103,7 +104,7 @@
                 }
             }
 
-            .content-right-register {
+            .content-right-verify-otp {
                 display: flex;
                 align-items: center;
                 justify-content: center;

@@ -15,7 +15,7 @@ function ForgotPassword() {
               <h2>Forgot Password</h2>
             </div>
             <div className="content-right-description">
-              <span>Enter your email address to retrieve your password</span>
+              <span>Enter the email address associated with your account and we will send you a link to reset your password.</span>
             </div>
           </div>
           <div className="content-right-forgot-password-form">
@@ -23,7 +23,7 @@ function ForgotPassword() {
               <input type="text" placeholder="Email address" />
             </div>
           </div>
-          <button className="btn-forgot-password">Retrieve Password</button>
+          <button className="btn-forgot-password">Request Password Reset</button>
           <div className="content-right-forgot-password">
             <Link to="/login">Back to login page</Link>
           </div>
