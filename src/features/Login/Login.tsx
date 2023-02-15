@@ -12,6 +12,7 @@ import {
 } from "../../utils/hooks/useGetNotification";
 import { useTranslation } from "react-i18next";
 import { LoginSchema } from "./LoginSchema";
+import Icon from "../../components/Icon/Icon";
 
 export interface LoginData {
   email: string;
@@ -65,7 +66,7 @@ function Login() {
       {contextHolder}
       <div className="login-page-content">
         <div className="login-page-content-left">
-          {/* <Icon name='authentication-bg' type='jpg'/> */}
+          <Icon name='authen-bg' type='jpg'/>
         </div>
         <div className="login-page-content-right">
           <div className="content-right-header">

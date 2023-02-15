@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import authApi from "../../api/authApi";
+import Icon from "../../components/Icon/Icon";
 import { useCallApi } from "../../utils/hooks/useCallApi";
 import {
   NotiObject,
@@ -39,26 +40,25 @@ function Register() {
         confirmPassword: params.confirmPassword,
       };
       const response = await callApi(() => authApi.register(data));
-      let notiObject: NotiObject = {
-        type: "success",
-        title: "",
-        content: "",
-      };
       if (response.status === 201) {
         setIsLoading(false);
-        notiObject.title = "Đăng ký thành công!";
-        notiObject.content =
-          "Đăng ký tài khoản thành công. Đang chuyển hướng đến trang đăng nhập!";
-        // redirect to path when login success
-        navigation("/otp-verify");
+        // redirect to path when register success
+        navigation("/otp-verify", {
+          state: {
+            email: params.email,
+            otpType: "REGISTER",
+          }
+        });
       } else {
         setIsLoading(false);
         const dataError = response.response.data;
-        notiObject.type = "error";
-        notiObject.title = "Đăng ký thất bại!";
-        notiObject.content = dataError.message;
+        let notiObject: NotiObject = {
+          type: "error",
+          title: "Đăng ký thất bại!",
+          content: dataError.message,
+        };
+        openNotification(notiObject);
       }
-      openNotification(notiObject);
     } catch (e) {
       console.log(e);
     }
@@ -69,7 +69,7 @@ function Register() {
       {contextHolder}
       <div className="register-page-content">
         <div className="register-page-content-left">
-          {/* <Icon name='authentication-bg' type='jpg'/> */}
+          <Icon name='authen-bg' type='jpg'/>
         </div>
         <div className="register-page-content-right">
           <div className="content-right-header">

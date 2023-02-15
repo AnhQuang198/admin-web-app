@@ -1,3 +1,4 @@
+import { OtpRequestData, OtpVerifyData } from './../features/OtpVerify/OtpVerify';
 import { LoginData } from './../features/Login/Login';
 import { RegisterData } from './../features/Register/Register';
 import { unAuthPOST } from "./apiRequest";
@@ -13,11 +14,11 @@ const authApi = {
     let url = apiPrefix + "/register";
     return unAuthPOST(url, params);
   },
-  sendOTP: (params: object) => {
+  sendOTP: (params: OtpRequestData) => {
     let url = apiPrefix + "/send-otp";
     return unAuthPOST(url, params);
   },
-  verifyOTP: (params: object) => {
+  verifyOTP: (params: OtpVerifyData) => {
     let url = apiPrefix + "/verify-otp";
     return unAuthPOST(url, params);
   },

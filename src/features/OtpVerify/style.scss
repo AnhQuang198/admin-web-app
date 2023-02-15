@@ -16,6 +16,13 @@
             width: 100%;
             background-color: #452b4e;
             border-radius: 20px 0px 0px 20px;
+
+            > img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 20px 0px 0px 20px;
+            }
         }
 
         &-right {
@@ -75,12 +82,25 @@
                         width: 100%;
                         border: none;
                         background-color: #f5f5f5;
-                        padding: 0px 18px;
+                        padding: 0px 0px 0px 18px;
 
                         &:focus {
                             outline: none;
                         }
                     }
+                }
+
+                .verify-otp-resend-second {
+                    display: flex;
+                    width: 50px;
+                    height: 100%;
+                    color: #b4b4b4;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .verify-otp-resend-button {
+                    margin: 0px 10px;
                 }
             }
 
