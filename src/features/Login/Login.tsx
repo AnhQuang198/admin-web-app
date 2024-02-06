@@ -58,6 +58,12 @@ function Login() {
       }
     } catch (e) {
       console.log(e);
+      let errorObj: NotiObject = {
+        type: "error",
+        title: "Đăng nhập thất bại!",
+        content: "Có lỗi xảy ra",
+      };
+      openNotification(errorObj);
     }
   };
 
