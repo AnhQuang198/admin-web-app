@@ -1,21 +1,13 @@
+import Config from "../config";
 export const OAUTH2_REDIRECT_URI = "http://127.0.0.1:3000/oauth2/redirect";
 
 //social login url
 //--GOOGLE
-export const GOOGLE_AUTH_URL =
-  process.env.REACT_APP_API_URL +
-  "/oauth2/authorize/google?redirect_uri=" +
-  OAUTH2_REDIRECT_URI;
+export const GOOGLE_AUTH_URL = Config.apiUrl + "/oauth2/authorize/google?redirect_uri=" + OAUTH2_REDIRECT_URI;
 //--FACEBOOK
-export const FACEBOOK_AUTH_URL =
-  process.env.REACT_APP_API_URL +
-  "/oauth2/authorize/facebook?redirect_uri=" +
-  OAUTH2_REDIRECT_URI;
+export const FACEBOOK_AUTH_URL = Config.apiUrl + "/oauth2/authorize/facebook?redirect_uri=" + OAUTH2_REDIRECT_URI;
 //--GITHUB
-export const GITHUB_AUTH_URL =
-  process.env.REACT_APP_API_URL +
-  "/oauth2/authorize/github?redirect_uri=" +
-  OAUTH2_REDIRECT_URI;
+export const GITHUB_AUTH_URL = Config.apiUrl + "/oauth2/authorize/github?redirect_uri=" + OAUTH2_REDIRECT_URI;
 
 const TOKEN_KEY = "access_token";
 const REFRESH_TOKEN_KEY = "refresh_token";
@@ -29,10 +21,7 @@ export const saveTokenAuth = (token: string, refreshToken: string) => {
 }
 
 export const isLogout = () => {
-  localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(REFRESH_TOKEN_KEY);
-  localStorage.removeItem(TOKEN_TYPE);
-  localStorage.removeItem(USER_EXPIRE_TIME);
+  localStorage.clear();
 }
 
 export const isLogin = () => {
@@ -63,5 +52,5 @@ export const getRefreshToken = () => {
 }
 
 export const getDefaultLocale = () => {
-  return localStorage.getItem(DEFAULT_LOCALE) ? localStorage.getItem(DEFAULT_LOCALE) : "en";
+  return localStorage.getItem(DEFAULT_LOCALE) ? localStorage.getItem(DEFAULT_LOCALE) : Config.defaultLocale;
 }

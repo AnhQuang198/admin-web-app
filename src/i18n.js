@@ -2,6 +2,7 @@ import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import backend from "i18next-http-backend";
+import Config from "./config";
 
 i18next
     .use(backend)
@@ -13,8 +14,8 @@ i18next
                 // load from i18next-gitbook repo
                 loadPath: "/locales/{{lng}}/{{ns}}.json",
             },
-            lng: "en",
-            fallbackLng: "en",
+            lng: localStorage.getItem('default_locale') ? localStorage.getItem('default_locale') : Config.defaultLocale,
+            fallbackLng: "en_US",
             debug: false,
             // have a common namespace used around the full app
             ns: [
