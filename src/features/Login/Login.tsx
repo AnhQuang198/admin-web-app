@@ -15,7 +15,7 @@ import { LoginSchema } from "./LoginSchema";
 import Icon from "../../components/Icon/Icon";
 
 export interface LoginData {
-  email: string;
+  username: string;
   password: string;
 }
 
@@ -24,15 +24,16 @@ function Login() {
   const navigation = useNavigate();
   const callApi = useCallApi();
   const { openNotification, contextHolder } = useGetNotification();
-  const [email, setEmail] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const login = async (params: LoginData) => {
+    console.log("data ", params);
     try {
       setIsLoading(true);
       let data = {
-        email: params.email,
+        username: params.username,
         password: params.password,
       };
       const response = await callApi(() => authApi.login(data));
@@ -97,10 +98,10 @@ function Login() {
             <hr />
           </div>
           <Formik
-            initialValues={{ email: email, password: password }}
+            initialValues={{ username: username, password: password }}
             validationSchema={LoginSchema}
             onSubmit={(values) => {
-              setEmail(values.email);
+              setUsername(values.username);
               setPassword(values.password);
               login(values);
             }}
@@ -112,16 +113,16 @@ function Login() {
                     <div className="login-input-text">
                       <input
                         type="text"
-                        name="email"
+                        name="username"
                         onChange={handleChange}
-                        value={values.email}
-                        placeholder="Email address"
+                        value={values.username}
+                        placeholder="Email or phone number"
                       />
                     </div>
                     <div className="validate-error">
-                      {errors.email && touched.email && (
+                      {errors.username && touched.username && (
                         <span className="validate-error-message">
-                          {errors.email}
+                          {errors.username}
                         </span>
                       )}
                     </div>
